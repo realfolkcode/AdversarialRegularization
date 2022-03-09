@@ -5,6 +5,17 @@ import torch
 import tqdm
 
 
+def get_accuracy(model, dataloader, device):
+    correct = 0
+    with torch.no_grad():
+        for x, y in dataloader:
+            x = x.to(device)
+            y = y.to(device)
+            prediction = model(x).argmax(dim=-1, keepdim=True)
+            correct += prediction.eq(y.view_as(prediction)).sum().item()
+    return correct / len(dataloader.dataset)
+
+
 def set_random_seeds(seed_value=0, device='cpu'):
     '''source https://forums.fast.ai/t/solved-reproducibility-where-is-the-randomness-coming-in/31628/5'''
     np.random.seed(seed_value)
