@@ -4,6 +4,7 @@ import numpy as np
 import torch
 import torchvision
 import tqdm
+import matplotlib.pyplot as plt
 
 
 def get_accuracy(model, dataloader, device):
