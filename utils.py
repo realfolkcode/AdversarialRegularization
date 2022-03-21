@@ -2,7 +2,9 @@ import random
 
 import numpy as np
 import torch
+import torchvision
 import tqdm
+import matplotlib.pyplot as plt
 
 
 def get_accuracy(model, dataloader, device):
@@ -26,3 +28,17 @@ def set_random_seeds(seed_value=0, device='cpu'):
         torch.cuda.manual_seed_all(seed_value)
         torch.backends.cudnn.deterministic = True
         torch.backends.cudnn.benchmark = False
+
+
+def plot_random_images(loader):
+    dataiter = iter(loader)
+    images, labels = dataiter.next()
+
+    def imshow(img):
+        img = img / 2 + 0.5     # unnormalize
+        npimg = img.numpy()
+        plt.figure(figsize=(16, 2))
+        plt.imshow(np.transpose(npimg, (1, 2, 0)))
+        plt.show()
+    
+    imshow(torchvision.utils.make_grid(images[:8]))        
