@@ -20,6 +20,8 @@ Kernels without regularization / Kernels with regularization
 
 ## Repository organization
 
+We highly recommend to run all notebooks in Google Colab.
+
  - `model_training.ipynb` contains all the necessary code to train a CNN model without regularization on large dataset (in our case, CIFAR-100).
  - Directory `models` contains weights for models trained on CIFAR-100 (they differ only in random initialization).
  - `training_without_regularization.ipynb` contains training model on a small subset of CIFAR-10 (100 samples).
